@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <ul class="language">
+        <li>JavaScript</li>
+    </ul>
+</body>
+<script>
+    function addLanguage(langName){
+        const li=document.createElement("li");
+        /*
+            IF ul had many li and we had used innerText then it would NOT BE GOOD as
+            it will always traverse through all of them to the BOTTOM to 
+            append the li (in innerText/innerHTML/textContent = langName) 
+            BUT THIS DOES NOT HAPPEN IN CASE OF TextNode
+            so this method( li.appendChild(document.createTextNode(langName) )) is MORE OPTIMISED
+        */
+        li.appendChild(document.createTextNode(langName));
+        document.querySelector('.language').appendChild(li);
+    }
+    addLanguage("Java");
+    addLanguage("python");
+    addLanguage("cpp");
+
+    // EDITING
+    // THIS ADDS goLang to python (python goLang)
+    let thirdLang = document.querySelector('li:nth-child(3)');
+    thirdLang.appendChild(document.createTextNode(" goLang"));
+
+    // THIS REPLACES ENTIRE li WITH A NEW li
+    const fourthLang = document.querySelector('li:nth-child(4)');
+    // fourthLang.innerHTML="<li>C and C++</li>"; // NOT OPTIMISED 
+    const newli=document.createElement('li');
+    newli.appendChild(document.createTextNode("C and C++"));
+    fourthLang.replaceWith(newli);
+
+    addLanguage("Extra");
+    //REMOVE 
+    const lastLang=document.querySelector("li:last-child");
+    lastLang.remove();
+</script>
+</html>

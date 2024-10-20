@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elements</title>
+</head>
+<body style="background-color: #212121; color: #fff;">
+    <p>I am a paragraph</p>
+</body>
+<script>
+    // Create Element
+    let div=document.createElement('div');
+    div.className="main";
+    div.id=Math.round(Math.random()*10+1);
+    div.setAttribute('title','generated title');
+    div.style.backgroundColor="green";
+    div.style.padding="12px";
+    // div.innerText="New Div";
+    /* TextNode method is MORE OPTIMIZED AS YOU DO NOT NEED TO TRAVERSE THE ENTIRE
+        TREE TO ADD THIS text as in case of innerText
+    */
+    let text=document.createTextNode("New Div");
+    div.appendChild(text);
+
+    // ADD ELEMENT TO THE HTML PAGE
+    document.body.appendChild(div);
+</script>
+</html>

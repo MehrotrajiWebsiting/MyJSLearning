@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Chai aur Javascript</h1>
+    <button id="start">Start</button>
+    <button id="stop">Stop</button>
+</body>
+<script>
+    const sayDate = function(str){
+        console.log(str, Date.now());
+    }
+
+    // PASS THE REFERENCE OF THE FUNCTION
+    // "om" is the parameter for the function
+    let intervalId= setInterval(sayDate, 1000, "om")
+    clearInterval(intervalId)
+
+    const start=document.querySelector('#start');
+    const stop=document.getElementById('stop');
+    let it;
+    start.addEventListener('click',()=>{
+        if(!it) it=setInterval(sayDate, 1000, "om");
+    });
+    stop.addEventListener('click',()=>{
+        clearInterval(it);
+        it=undefined;
+    });
+</script>
+</html>

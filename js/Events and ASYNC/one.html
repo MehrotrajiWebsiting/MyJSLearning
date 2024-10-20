@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>htnml Events </title>
+</head>
+<body style="background-color: #414141; color: aliceblue;">
+    <h2>Amazing image</h2>
+    <div >
+        <ul id="images">
+            <!-- onclick="alert('owl')" NOT OPTIMISED -->
+            <li><img width="200px" id="photoshop" src="https://images.pexels.com/photos/3561339/pexels-photo-3561339.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt="photoshop"></li>
+            <li><img width="200px" id="japan" src="https://images.pexels.com/photos/3532553/pexels-photo-3532553.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt=""></li>
+            <li><img width="200px" id="river" src="https://images.pexels.com/photos/3532551/pexels-photo-3532551.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt=""></li>
+            <li><img width="200px" id="owl" src="https://images.pexels.com/photos/3532552/pexels-photo-3532552.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt="" ></li>
+            <li><img width="200px" id="prayer" src="https://images.pexels.com/photos/2522671/pexels-photo-2522671.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt=""></li>
+            <li><a style="color: aliceblue;" href="https://google.com" id="google">Google</a></li>
+        </ul>
+   </div>
+</body>
+<script>
+    /* EventPropagation - It has 2 context
+        1)Event Bubbling - false (by default)
+            It is like bubbling, i.e., goes from bottom to top (child to parent) parent has an eventListener 
+        2)Event Capturing - true
+            It goes top to bottom
+    */
+
+    // NOT OPTIMISED
+    // document.getElementById('owl').onclick = function(){
+    //     alert("owl clicked")
+    // }
+
+    //OTHER METHODS TO ADD EVENTLISTENER
+     // attachEvent()
+    // jQuery - on
+
+    // type of events, timestamp, preventDefault (change default behaviour)
+    // target, toElement, srcElement, currentTarget,
+
+    // INTERVIEW PERSPECTIVE
+    // clientX, clientY, screenX, screenY
+    document.addEventListener('click',(event)=>{
+        console.log("X:",event.clientX);
+        console.log("Y:",event.clientY);
+    })
+    
+    // Identify key is pressed or not
+    // altkey, ctrlkey, shiftkey, keyCode
+
+    // THIRD PARAMETER (event propagation) IS ALWAYS false BY DEFAULT
+
+    /*WHEN BOTH FALSE
+        IF CLICKED INSIDE OWL (LINE 54 TO 61), it gives - 
+        owl clicked
+        clicked inside ul (as owl image was inside the ul)
+    */
+    /*WHEN BOTH TRUE
+        IF CLICKED INSIDE OWL (LINE 54 TO 61), it gives - 
+        clicked inside ul (as owl image was inside the ul)
+        owl clicked
+    */
+
+    // document.getElementById('images').addEventListener('click', function(e){
+    //     console.log("clicked inside the ul");
+    // }, false)
+
+    // document.getElementById('owl').addEventListener('click', function(e){
+    //     console.log("owl clicked");
+    // }, false)
+    
+    /*e.stopPropagation()  stops bubbling , i.e, only 'owl clicked' comes to console
+        parent event not executed
+    */
+    // document.getElementById('owl').addEventListener('click', function(e){
+    //     console.log("owl clicked");
+    //     e.stopPropagation()  //owl image is not removed as this stops other events
+    // }, false)
+
+    // document.getElementById('google').addEventListener('click',function(e){
+    //     e.preventDefault();
+    //     e.stopPropagation()
+    //     console.log("google clicked");
+    // }, false)
+   
+    
+    document.querySelector('#images').addEventListener('click', function(e){
+        console.log(e.target.parentNode);
+        console.log(e.target.tagName);
+        //if clicked on google entire ul is removed so only remove for img tags
+        if (e.target.tagName === 'IMG') {
+            console.log(e.target.id);
+            //parent of img is li and we have to remove li
+            let removeIt = e.target.parentNode
+            //removeIt.parentNode.removeChild(removeIt)
+            removeIt.remove()
+        }
+    
+        
+    })
+    
+</script>
+</html>

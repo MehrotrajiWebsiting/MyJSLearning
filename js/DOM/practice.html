@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced</title>
+</head>
+<body>
+    
+</body>
+<script>
+    function newElement(element,text){
+        const ele=document.createElement(element);
+        const t=createText(text);
+        ele.appendChild(t);
+
+        document.body.appendChild(ele);
+    }
+    function createText(text) {
+        return document.createTextNode(text);
+    }
+    newElement("p","Om");
+    newElement("span"," Mehrotra");
+    newElement("span"," is")
+    newElement("div","great");
+</script>
+</html>

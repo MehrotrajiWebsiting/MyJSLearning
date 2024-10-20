@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>React</title>
+</head>
+<body>
+    <button>Button Clicked</button>
+</body>
+<script>
+    class React {
+        /*
+            When page is loaded an object of React is created
+            We get reference of button
+            when button is clicked we get message through function handleclick
+        */ 
+        constructor() {
+            this.library="React";
+            this.server="https://localhost:300";
+            //this.handleClick is required else it gives error
+
+            //bind(this) ATTACHES the reference of class(its variables and functions)
+            //without bind only reference of button goes
+            //with bind reference of BOTH button and class is sent
+            document.querySelector('button').addEventListener('click',
+            this.handleClick.bind(this)) ;
+        }
+        handleClick(){
+            console.log("Button clicked");
+            console.log(this); // <button>Button Clicked</button> if we do NOT use bind
+            // React {library: 'React', server: 'https://localhost:300'} when we use bind
+            
+            console.log(this.server);
+        }
+    }
+    //
+    const app=new React();
+</script>
+</html>

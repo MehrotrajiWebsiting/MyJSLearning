@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Chai aur code</h1>
+    <button id="stop">Stop</button>
+</body>
+<script>
+    /* setTimeout - execute after certain time
+    */
+    setTimeout(()=>{
+        console.log("Mehrotra");
+    },4000);
+
+    const sayOm = function(){
+        console.log("Om");
+    }   
+    // PASS REFERENCE OF THE FUNCTION
+    setTimeout(sayOm,2000);
+
+    const changeText = function(){
+        document.querySelector('h1').innerHTML = "best JS series"
+    }
+    // PASS REFERENCE OF THE FUNCTION
+    const changeMe = setTimeout(changeText, 2000)
+
+    document.querySelector('#stop').addEventListener('click', function(){
+        //DO NOT ALLOW THE TIMEOUT TO EXECUTE 
+        //HERE IF YOU PRESS STOP BEFORE 2s the changeText function is not executed
+        clearTimeout(changeMe)
+        console.log("STOPPED")
+    })
+</script>
+</html>
